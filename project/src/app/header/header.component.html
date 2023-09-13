@@ -6,6 +6,11 @@
 <button mat-raised-button color="primary" *ngIf= "! isLoggedIn()" routerLink="/login">Login</button>
 <button mat-raised-button color="warn"  *ngIf= " isLoggedIn()" (click)="logout()" >Logout</button>
 </mat-toolbar>
+<mat-toolbar color="primary" *ngIf="isLoggedIn()">
+  <button mat-raised-button color="primary" routerLink="/">Home</button>
+  <button mat-raised-button  color="primary" routerLink="/addNewProduct" *ngIf="isAdmin()">Add New Product</button>
+</mat-toolbar>
+
 <!--
 <nav class="navbar navbar-expand-lg navbar-light bg-light" >
   <div class="container-fluid">

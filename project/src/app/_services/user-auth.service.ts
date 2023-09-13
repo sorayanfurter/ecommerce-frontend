@@ -38,6 +38,19 @@ export class UserAuthService {
     } else{
       return true;
     };
+  }
+
+  public isAdmin(){
+    const roles: any[] = this.getRoles();
+   return roles[0].name === "ADMIN";
+
+  }
+
+  public isUser(){
+    const roles: any[] = this.getRoles();
+   return roles[0].name === "USER";
+
+  }
 
 }
-}
+
