@@ -2,7 +2,7 @@
   <div class="card p-4">
     <div class="row">
       <div class="col-6">
-        <form #productForm = "ngForm" (ngSubmit)="addProduct(productForm)">
+        <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label> Product Name</mat-label>
             <input
@@ -47,12 +47,52 @@
             >
               Clear
             </button>
-            <button mat-stroked-button color="primary" type="submit">Add Product</button>
+            <button mat-stroked-button color="primary" type="submit">
+              Add Product
+            </button>
           </div>
         </form>
       </div>
 
-      <div class="col-6">Image Area</div>
+      <div class="col-6">
+        <div>
+
+          <div>
+            <div class="dropzone"
+            appDrag
+            (files)="fileDropped($event)">
+              <div class="text-wrapper">
+                <div class="centered">
+                Drag and Drop your file or
+                <a (click)="selectFile.click()" class="browse-button">browse</a>
+                a file
+                </div>
+              </div>
+            </div>
+          </div>
+        <input
+          multiple
+          type="file"
+          style="display: none;"
+          #selectFile
+          value="select"
+          (change)="onFileSelected($event)"
+        />
+        </div>
+
+        <div class="mt-5">
+          <div class="row">
+            <mat-grid-list  cols="4" rowHeight="1:1">
+              <mat-grid-tile *ngFor="let file of product.productImages; let i = index;">
+              <div style="position: relative">
+                <span  class="btn-remove-image" (click)="removeImages(i)">x</span>
+                <img [src]="file.url" width="100px" height="100px">
+              </div>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </div>
+        </div>
+     </div>
     </div>
   </div>
 </div>
