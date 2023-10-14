@@ -7,18 +7,87 @@ import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './_auth/auth.guard';
 import { AddNewProductComponent } from './add-new-product/add-new-product.component';
+import { ShowProductDetailsComponent } from './show-product-details/show-product-details.component';
+import { ProductResolveService } from './product-resolve.service';
+import { ProductViewDetailsComponent } from './product-view-details/product-view-details.component';
+import { BuyProductComponent } from './buy-product/buy-product.component';
+import { BuyProductResolverService } from './buy-product-resolver.service';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+import { RegisterComponent } from './register/register.component';
+import { CartComponent } from './cart/cart.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'admin', component: AdminComponent, canActivate:[AuthGuard], data:{roles:['ADMIN']}},
-  {path: 'user', component: UserComponent, canActivate:[AuthGuard], data:{roles:['USER']}},
-  {path: 'login', component: LoginComponent},
-  {path: 'forbidden', component: ForbiddenComponent},
-  {path: 'addNewProduct', component: AddNewProductComponent, canActivate:[AuthGuard], data:{roles:['ADMIN']}}
+  { path: '', component: HomeComponent },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ADMIN'] },
+  },
+  {
+    path: 'user',
+    component: UserComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['USER'] },
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'forbidden', component: ForbiddenComponent },
+  {
+    path: 'addNewProduct',
+    component: AddNewProductComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ADMIN'] },
+    resolve: {
+      product: ProductResolveService,
+    },
+  },
+  {
+    path: 'showProductDetails',
+    component: ShowProductDetailsComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ADMIN'] },
+  },
+  {
+    path: 'productViewDetails',
+    component: ProductViewDetailsComponent,
+    resolve: { product: ProductResolveService },
+  },
+  {
+    path: 'buyProduct',
+    component: BuyProductComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['USER'] },
+    resolve: { productDetails: BuyProductResolverService },
+  },
+  {
+    path: 'orderConfirm',
+    component: OrderConfirmationComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['USER'] },
+  },
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'cart',
+    component: CartComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['USER'] },
+  },
+  { path: 'myOrders',
+  component: MyOrdersComponent,
+  canActivate: [AuthGuard],
+  data: { roles: ['USER'] }},
+  {
+    path: 'orderInformation',
+    component: OrderDetailsComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ADMIN'] },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

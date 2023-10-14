@@ -24,6 +24,22 @@ import {MatInputModule} from '@angular/material/input';
 import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { DragDirective } from './drag.directive';
+import { ShowProductDetailsComponent } from './show-product-details/show-product-details.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ShowProductImagesDialogComponent } from './show-product-images-dialog/show-product-images-dialog.component';
+import { ProductViewDetailsComponent } from './product-view-details/product-view-details.component';
+import { BuyProductComponent } from './buy-product/buy-product.component';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+import { RegisterComponent } from './register/register.component';
+import { CartComponent } from './cart/cart.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
+
+
 
 @NgModule({
   declarations: [
@@ -35,7 +51,16 @@ import { DragDirective } from './drag.directive';
     HeaderComponent,
     ForbiddenComponent,
     AddNewProductComponent,
-    DragDirective
+    DragDirective,
+    ShowProductDetailsComponent,
+    ShowProductImagesDialogComponent,
+    ProductViewDetailsComponent,
+    BuyProductComponent,
+    OrderConfirmationComponent,
+    RegisterComponent,
+    CartComponent,
+    MyOrdersComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +73,12 @@ import { DragDirective } from './drag.directive';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule,
+    MatButtonToggleModule
   ],
   providers: [
     AuthGuard,
